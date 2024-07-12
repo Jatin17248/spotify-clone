@@ -1,11 +1,153 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+}
 body{
     /* background-color: black;
     color: white; */
 }
 .left{
-    width: 25vw;
+    width: 20vw;
+    padding: 10px;
+    height: 96vh;
 }
 .right{
-    width: 75vw;
+    width: 80vw;
 }
 
+.home ul li{
+    list-style: none;
+    width: 22px;
+    padding-top: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 0.5rem; 
+}
+.home ul li div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home ul li div svg{
+    width: 22px;
+    fill: rgb(167, 167, 167);
+}
+.home ul li:hover div svg{
+    fill: #ffffff;
+} 
+.home ul li:hover{
+    color: #ffffff;
+}
+.home{   
+    width: calc(100%-10px);
+    font-size: 16px;
+}
+.library{
+    min-height: 60vh;
+    
+}
+.library .heading{
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 0.5rem; 
+    font-size: 16px;
+}
+.library .heading div svg{
+    width: 22px;
+    fill: rgb(167, 167, 167);
+}
+.library .heading p{
+    width: 70%;
+}
+.library .heading:hover div svg, .library .heading:hover p{
+    fill: #ffffff;
+    color: #ffffff;
+} 
+.library{
+    position: relative;
+}
+.left .library footer{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    position: absolute;
+    bottom: 20px;
+    width: 70%;
+}
+.left .library footer a{
+    font-size: 11px;
+    color: rgb(167, 167, 167);
+    text-decoration: none;
+}
+
+/* right starting */
+
+.right .header{
+    display: flex;
+    width: calc(100%-20px);
+    padding: 10px;
+    background-color: #101010;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    justify-content: space-between;
+}
+.right .header > *{
+    padding: 10px;
+}
+.right .header .nav{
+    display: flex;
+    width: 20%;
+    gap: 8px;
+}
+
+.right .header .nav button{
+    padding: 10px;
+    border-radius: 50%;
+    background-color: black;
+    color: rgb(167, 167, 167);
+    border:0;
+}
+.right .header .buttons{
+    display: flex;
+    gap: 8px;
+}
+.right .header .buttons button{
+    font-size: 16px;
+    border: 0;
+    border-radius: 25%;
+    padding: 8px 20px;
+    width: 125px;
+}
+.right .header .buttons :nth-child(1){
+    background-color: transparent;
+    color: #fff;
+}
+.right .header .buttons :nth-child(2){
+    background-color: #ffffff;
+}
+
+/*Starting Playlist css*/
+.playlists{
+ color: #fff;   
+}
+
+.playlists .card{
+    width: 195px;
+}
+
+.playlists .card img{
+    width: 100%;
+    object-fit: contain;
+}
+.playlists .card > *{
+    padding-top: 3px;
+}

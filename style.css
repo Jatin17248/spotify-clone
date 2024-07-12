@@ -138,16 +138,53 @@ body{
 /*Starting Playlist css*/
 .playlists{
  color: #fff;   
+ padding: 8px;
 }
 
+.cardContainer{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
 .playlists .card{
     width: 195px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    position: relative;
 }
 
+.playlists .card:hover{
+    background-color: #252525;
+}
 .playlists .card img{
     width: 100%;
     object-fit: contain;
 }
 .playlists .card > *{
-    padding-top: 3px;
+    padding-top: 8px;
+}
+.playlists .card .play{
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1ED760;
+    border-radius: 50%;
+    padding: 5px;
+    color: black;
+    font-size: 1.35rem;
+    position: absolute;
+    right: 25px;
+    top:255px;
+    opacity: 0;
+    transition: all 0.5s ease-out;
+}
+
+.playlists .card:hover .play{
+    top:155px;
+    opacity: 1;
+    transform: all 0.5s ease-out;
 }

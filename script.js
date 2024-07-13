@@ -17,8 +17,14 @@ const newSongs = songs.map(song => song.replace('http://127.0.0.1:5500/', 'http:
 async function main(){
 let songs = await getSongs();
 console.log(songs)
+let songUl = document.querySelector(".songList ol");
+for(const song of songs){
+    let li = document.createElement("li");
+    li.innerText = song.split("/songs/")[1].replaceAll("%20", " ").replace(".mp3", "").replace("(DJJOhAL.Com)", "");
+    songUl.appendChild(li);
+}
 var audio = new Audio(songs[0]);
-audio.play();
+//audio.play();
 
 audio.addEventListener("loadeddata", ()=>{
     console.log(audio.duration, audio.currentSrc, audio.currentTime);

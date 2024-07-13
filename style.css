@@ -44,7 +44,7 @@ body{
     font-size: 16px;
 }
 .library{
-    min-height: 60vh;
+    height: 66vh;
     
 }
 .library .heading{
@@ -221,4 +221,32 @@ body{
     display: flex;
     justify-content: center;
     gap: 16px;
+}
+.songList{
+    overflow-y: auto;
+    max-height: 48vh;
+}
+.songList ol{
+    padding-left: 46px;
+}
+
+.songList ol li{
+    list-style-type: decimal;
+    display: flex;
+    gap: 20px;
+    cursor:pointer;
+    padding: 12px 0;
+
+}
+.songList ol li .play{
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1ED760;
+    border-radius: 50%;
+    padding: 5px;
+    color: black;
+    font-size: 0.8rem;
 }

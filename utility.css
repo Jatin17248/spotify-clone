@@ -35,7 +35,7 @@
 }
 /* Webkit Browsers */
 ::-webkit-scrollbar {
-    width: 12px; /* Width of the scrollbar */
+    width: 7px; /* Width of the scrollbar */
 }
 
 ::-webkit-scrollbar-track {
@@ -54,9 +54,9 @@
 
 /* Firefox */
 * {
-    scrollbar-width: thin; /* Width of the scrollbar */
-    scrollbar-color: #555 #2c2c2c; /* Color of the thumb and track */
-}
+    /*scrollbar-width: thin;  Width of the scrollbar */
+   /* scrollbar-color: #555 #2c2c2c; /* Color of the thumb and track */
+} 
 
 /* Edge and IE */
 body {

@@ -33,3 +33,36 @@
 .p-2{
     padding: 20px;
 }
+/* Webkit Browsers */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #2c2c2c; /* Darker color for the track */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555; /* Light color for the thumb */
+    border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #777; /* Change color on hover */
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin; /* Width of the scrollbar */
+    scrollbar-color: #555 #2c2c2c; /* Color of the thumb and track */
+}
+
+/* Edge and IE */
+body {
+    -ms-overflow-style: none; /* Disable default scrollbars */
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Disable default scrollbars */
+}

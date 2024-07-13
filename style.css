@@ -5,18 +5,14 @@
     font-style: normal;
 }
 body{
-    /* background-color: black;
-    color: white; */
+    background-color: black;
+    color: white;
 }
 .left{
     width: 20vw;
     padding: 10px;
     height: 96vh;
 }
-.right{
-    width: 80vw;
-}
-
 .home ul li{
     list-style: none;
     width: 22px;
@@ -90,26 +86,34 @@ body{
 }
 
 /* right starting */
-
+.right{
+    height: 96vh;
+    position: relative;
+    width: 80vw;
+}
 .right .header{
     display: flex;
-    width: calc(100%-20px);
-    padding: 10px;
+    padding: 2px;
     background-color: #101010;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
     justify-content: space-between;
+    align-items: center;
 }
 .right .header > *{
-    padding: 10px;
+    padding: 5px;
 }
 .right .header .nav{
     display: flex;
     width: 20%;
     gap: 8px;
+    align-items: center;
+    padding: 15px;
 }
 
 .right .header .nav button{
+    height: 35px;
+    width:35px;
     padding: 10px;
     border-radius: 50%;
     background-color: black;
@@ -117,42 +121,58 @@ body{
     border:0;
 }
 .right .header .buttons{
+    padding: 0 32px;
     display: flex;
     gap: 8px;
 }
 .right .header .buttons button{
     font-size: 16px;
     border: 0;
-    border-radius: 25%;
-    padding: 8px 20px;
-    width: 125px;
+    border-radius: 26px;
+    padding: 16px 10px;
+    width: 100px;
 }
 .right .header .buttons :nth-child(1){
     background-color: transparent;
+    color: rgb(167, 167, 167);
+    font-weight: bold;
+    cursor: pointer;
+}
+.right .header .buttons :nth-child(1):hover{
     color: #fff;
+    font-weight: bolder;
 }
 .right .header .buttons :nth-child(2){
     background-color: #ffffff;
+    font-weight: bold;
+    
 }
-
+.right .header .buttons :nth-child(2):hover{
+    font-size: 18px;
+    font-weight: bolder;
+}
 /*Starting Playlist css*/
 .playlists{
  color: #fff;   
  padding: 8px;
+ 
 }
 
 .cardContainer{
+    height: 68vh;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
     margin-top: 16px;
+    overflow-y: auto;
 }
 .playlists .card{
-    width: 195px;
+    width: 200px;
     padding: 10px;
     border-radius: 5px;
     background-color: transparent;
     position: relative;
+    max-height: 300px;
 }
 
 .playlists .card:hover{
@@ -177,14 +197,28 @@ body{
     color: black;
     font-size: 1.35rem;
     position: absolute;
-    right: 25px;
+    right: 18px;
     top:255px;
     opacity: 0;
     transition: all 0.5s ease-out;
 }
 
 .playlists .card:hover .play{
-    top:155px;
+    top:164px;
     opacity: 1;
     transform: all 0.5s ease-out;
+}
+
+.playbar{
+    position: absolute;
+    bottom: 0;
+    background-color: green;
+    width: 97%;
+    padding: 12px;
+    
+}
+.songButtons{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
 }

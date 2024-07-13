@@ -1,252 +1,275 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
 }
-body{
-    background-color: black;
-    color: white;
+body {
+  background-color: black;
+  color: white;
 }
-.left{
-    width: 20vw;
-    padding: 10px;
-    height: 96vh;
+.left {
+  width: 20vw;
+  padding: 10px;
+  height: 96vh;
 }
-.home ul li{
-    list-style: none;
-    width: 22px;
-    padding-top: 13px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    margin-bottom: 0.5rem; 
+.home ul li {
+  list-style: none;
+  width: 22px;
+  padding-top: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 0.5rem;
 }
-.home ul li div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.home ul li div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.home ul li div svg{
-    width: 22px;
-    fill: rgb(167, 167, 167);
+.home ul li div svg {
+  width: 22px;
+  fill: rgb(167, 167, 167);
 }
-.home ul li:hover div svg{
-    fill: #ffffff;
-} 
-.home ul li:hover{
-    color: #ffffff;
+.home ul li:hover div svg {
+  fill: #ffffff;
 }
-.home{   
-    width: calc(100%-10px);
-    font-size: 16px;
+.home ul li:hover {
+  color: #ffffff;
 }
-.library{
-    height: 66vh;
-    
+.home {
+  width: calc(100%-10px);
+  font-size: 16px;
 }
-.library .heading{
-    width: 100%;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    margin-bottom: 0.5rem; 
-    font-size: 16px;
+.library {
+  height: 70vh;
 }
-.library .heading div svg{
-    width: 22px;
-    fill: rgb(167, 167, 167);
+.library .heading {
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 16px;
 }
-.library .heading p{
-    width: 70%;
+.library .heading div svg {
+  width: 22px;
+  fill: rgb(167, 167, 167);
 }
-.library .heading:hover div svg, .library .heading:hover p{
-    fill: #ffffff;
-    color: #ffffff;
-} 
-.library{
-    position: relative;
+.library .heading p {
+  width: 70%;
 }
-.left .library footer{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    position: absolute;
-    bottom: 20px;
-    width: 70%;
+.library .heading:hover div svg,
+.library .heading:hover p {
+  fill: #ffffff;
+  color: #ffffff;
 }
-.left .library footer a{
-    font-size: 11px;
-    color: rgb(167, 167, 167);
-    text-decoration: none;
+.library {
+  position: relative;
+}
+.left .library footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: absolute;
+  bottom: 20px;
+  width: 70%;
+}
+.left .library footer a {
+  font-size: 11px;
+  color: rgb(167, 167, 167);
+  text-decoration: none;
 }
 
 /* right starting */
-.right{
-    height: 96vh;
-    position: relative;
-    width: 80vw;
+.right {
+  height: 96vh;
+  position: relative;
+  width: 80vw;
 }
-.right .header{
-    display: flex;
-    padding: 2px;
-    background-color: #101010;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    justify-content: space-between;
-    align-items: center;
+.right .header {
+  display: flex;
+  padding: 2px;
+  background-color: #101010;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  justify-content: space-between;
+  align-items: center;
 }
-.right .header > *{
-    padding: 5px;
+.right .header > * {
+  padding: 5px;
 }
-.right .header .nav{
-    display: flex;
-    width: 20%;
-    gap: 8px;
-    align-items: center;
-    padding: 15px;
+.right .header .nav {
+  display: flex;
+  width: 20%;
+  gap: 8px;
+  align-items: center;
+  padding: 15px;
 }
 
-.right .header .nav button{
-    height: 35px;
-    width:35px;
-    padding: 10px;
-    border-radius: 50%;
-    background-color: black;
-    color: rgb(167, 167, 167);
-    border:0;
+.right .header .nav button {
+  height: 35px;
+  width: 35px;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: black;
+  color: rgb(167, 167, 167);
+  border: 0;
 }
-.right .header .buttons{
-    padding: 0 32px;
-    display: flex;
-    gap: 8px;
+.right .header .buttons {
+  padding: 0 32px;
+  display: flex;
+  gap: 8px;
 }
-.right .header .buttons button{
-    font-size: 16px;
-    border: 0;
-    border-radius: 26px;
-    padding: 16px 10px;
-    width: 100px;
+.right .header .buttons button {
+  font-size: 16px;
+  border: 0;
+  border-radius: 26px;
+  padding: 16px 10px;
+  width: 100px;
 }
-.right .header .buttons :nth-child(1){
-    background-color: transparent;
-    color: rgb(167, 167, 167);
-    font-weight: bold;
-    cursor: pointer;
+.right .header .buttons :nth-child(1) {
+  background-color: transparent;
+  color: rgb(167, 167, 167);
+  font-weight: bold;
+  cursor: pointer;
 }
-.right .header .buttons :nth-child(1):hover{
-    color: #fff;
-    font-weight: bolder;
+.right .header .buttons :nth-child(1):hover {
+  color: #fff;
+  font-weight: bolder;
 }
-.right .header .buttons :nth-child(2){
-    background-color: #ffffff;
-    font-weight: bold;
-    
+.right .header .buttons :nth-child(2) {
+  background-color: #ffffff;
+  font-weight: bold;
 }
-.right .header .buttons :nth-child(2):hover{
-    font-size: 18px;
-    font-weight: bolder;
+.right .header .buttons :nth-child(2):hover {
+  font-size: 18px;
+  font-weight: bolder;
 }
 /*Starting Playlist css*/
-.playlists{
- color: #fff;   
- padding: 8px;
- 
+.playlists {
+  color: #fff;
+  padding: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
-.cardContainer{
-    height: 68vh;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 16px;
-    overflow-y: auto;
+.cardContainer {
+  height: 78.5vh;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  overflow-y: auto;
 }
-.playlists .card{
-    width: 200px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: transparent;
-    position: relative;
-    max-height: 300px;
-}
-
-.playlists .card:hover{
-    background-color: #252525;
-}
-.playlists .card img{
-    width: 100%;
-    object-fit: contain;
-}
-.playlists .card > *{
-    padding-top: 8px;
-}
-.playlists .card .play{
-    width: 36px;
-    height: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #1ED760;
-    border-radius: 50%;
-    padding: 5px;
-    color: black;
-    font-size: 1.35rem;
-    position: absolute;
-    right: 18px;
-    top:255px;
-    opacity: 0;
-    transition: all 0.5s ease-out;
+.playlists .card {
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  position: relative;
+  max-height: 300px;
 }
 
-.playlists .card:hover .play{
-    top:164px;
-    opacity: 1;
-    transform: all 0.5s ease-out;
+.playlists .card:hover {
+  background-color: #252525;
+}
+.playlists .card img {
+  width: 100%;
+  object-fit: contain;
+}
+.playlists .card > * {
+  padding-top: 8px;
+}
+.playlists .card .play {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1ed760;
+  border-radius: 50%;
+  padding: 5px;
+  color: black;
+  font-size: 1.35rem;
+  position: absolute;
+  right: 18px;
+  top: 255px;
+  opacity: 0;
+  transition: all 0.5s ease-out;
 }
 
-.playbar{
-    position: absolute;
-    bottom: 0;
-    background-color: green;
-    width: 97%;
-    padding: 12px;
-    
-}
-.songButtons{
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-}
-.songList{
-    overflow-y: auto;
-    max-height: 48vh;
-}
-.songList ol{
-    padding-left: 46px;
+.playlists .card:hover .play {
+  top: 164px;
+  opacity: 1;
+  transform: all 0.5s ease-out;
 }
 
-.songList ol li{
-    list-style-type: decimal;
-    display: flex;
-    gap: 20px;
-    cursor:pointer;
-    padding: 12px 0;
-
+.playbar {
+  position: fixed;
+  bottom: 20px;
+  background-color: green;
+  width: 77vw;
+  padding: 12px;
+  border-radius: 25px;
+  margin: 0 5px;
 }
-.songList ol li .play{
-    width: 18px;
-    height: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #1ED760;
-    border-radius: 50%;
-    padding: 5px;
-    color: black;
-    font-size: 0.8rem;
+.songButtons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.songList {
+  overflow-y: auto;
+  max-height: 48vh;
+}
+.songList ol {
+  margin-right: 6px;
+}
+
+.songList ol li {
+  list-style-type: decimal;
+  display: flex;
+  gap: 20px;
+  cursor: pointer;
+  padding: 12px 8px;
+  border: 1px solid rgb(167, 167, 167);
+  border-radius: 8px;
+  margin: 8px 0;
+  align-items: center;
+  justify-content: space-between;
+}
+.songList ol li:hover {
+  background-color: #252525;
+  border: 1px solid white;
+  color: #fff;
+  font-weight: 600;
+}
+.songList ol li > :nth-child(1) {
+  font-size: 2rem;
+}
+.songList ol li .info {
+  width: 70%;
+}
+.songList ol li .info :first-child {
+  font-size: 18px;
+}
+.songList ol li .info :nth-child(2) {
+  font-size: 12px;
+}
+.songList ol li .play {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1ed760;
+  border-radius: 50%;
+  padding: 5px;
+  color: black;
+  font-size: 0.8rem;
 }

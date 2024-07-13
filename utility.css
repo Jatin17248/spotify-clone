@@ -1,68 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-.flex{
-    display: flex;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+.flex {
+  display: flex;
 }
-.border{
-    margin: 1px;
-}
-
-.justify-center{
-    justify-content: center;
+.border {
+  margin: 1px;
 }
 
-.align-center{
-    align-items: center;
-}
-.bg-black{
-    background-color: black;
-    color: rgb(167, 167, 167);
-}
-.bg-grey{
-    background-color: #121212;
-}
-.rounded{
-    border-radius: 7px;
-}
-.m-1{
-    margin: 2px;
+.justify-center {
+  justify-content: center;
 }
 
-.p-1{
-    padding: 4px;
+.align-center {
+  align-items: center;
 }
-.p-2{
-    padding: 20px;
+.bg-black {
+  background-color: black;
+  color: rgb(167, 167, 167);
+}
+.bg-grey {
+  background-color: #121212;
+}
+.rounded {
+  border-radius: 7px;
+}
+.m-1 {
+  margin: 2px;
+}
+
+.p-1 {
+  padding: 4px;
+}
+.p-2 {
+  padding: 20px;
 }
 /* Webkit Browsers */
 ::-webkit-scrollbar {
-    width: 7px; /* Width of the scrollbar */
+  width: 7px; /* Width of the scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-    background: #2c2c2c; /* Darker color for the track */
-    border-radius: 10px; /* Rounded corners for the track */
+  background: #2c2c2c; /* Darker color for the track */
+  border-radius: 10px; /* Rounded corners for the track */
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #555; /* Light color for the thumb */
-    border-radius: 10px; /* Rounded corners for the thumb */
+  background: #555; /* Light color for the thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #777; /* Change color on hover */
+  background: #777; /* Change color on hover */
 }
 
 /* Firefox */
 * {
-    /*scrollbar-width: thin;  Width of the scrollbar */
-   /* scrollbar-color: #555 #2c2c2c; /* Color of the thumb and track */
-} 
+  /*scrollbar-width: thin;  Width of the scrollbar */
+  /* scrollbar-color: #555 #2c2c2c; /* Color of the thumb and track */
+}
 
 /* Edge and IE */
 body {
-    -ms-overflow-style: none; /* Disable default scrollbars */
+  -ms-overflow-style: none; /* Disable default scrollbars */
 }
 
 body::-webkit-scrollbar {
-    display: none; /* Disable default scrollbars */
+  display: none; /* Disable default scrollbars */
 }

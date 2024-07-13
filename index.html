@@ -6,6 +6,7 @@
     <title>Spotify - Web Player: Music for everyone</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="utility.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -77,17 +78,7 @@
             <p>Your Library</p>
             <i class="fa-solid fa-plus"></i>
           </div>
-          <div class="songList"><ol>
-            <li>
-              <i class="fa-solid fa-music"></i>
-              <div class="info">
-                <div>Song Name</div>
-                <div>Song Info</div>
-                
-              </div>
-              <div class="play"><i class="fa-solid fa-play"></i></div>
-            </li>
-          </ol></div>
+          <div class="songList"><ol></ol></div>
           <footer>
             <div><a href="#">Legal</a></div>
             <div><a href="#">Safety & Privacy Center</a></div>
@@ -116,7 +107,7 @@
         </div>
         <div class="playlists bg-grey">
           <h1>Spotify Playlists</h1>
-          <div class="cardContainer">
+          <div class="cardContainer rounded">
             <div class="card">
               <img
                 src="https://i.scdn.co/image/ab67616d00001e029bb2d30b01ac2cada8a8ad03"
@@ -130,14 +121,14 @@
         <div class="playbar">
           <div class="songInfo"></div>
           <div class="songButtons">
-          <i class="fa-solid fa-backward-step"></i>
-          <i class="fa-regular fa-circle-play"></i>
-          <i class="fa-solid fa-forward-step"></i>
+            <i class="fa-solid fa-backward-step"></i>
+            <i class="fa-regular fa-circle-play"></i>
+            <i class="fa-solid fa-forward-step"></i>
+          </div>
+          <div class="songTime"></div>
         </div>
-        <div class="songTime"></div>
-        </div>        
-        </div>
+      </div>
     </div>
-  <script src="script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

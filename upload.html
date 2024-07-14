@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload MP3</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .input-group input[type="file"] {
+            padding: 3px;
+        }
+        .input-group input:focus {
+            outline: none;
+            box-shadow: 0 0 5px #1db954;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1db954;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1ed760;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload MP3</h2>
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <div class="input-group">
+                <label for="mp3File">Choose MP3 file</label>
+                <input type="file" id="mp3File" name="mp3File" accept=".mp3" required>
+            </div>
+            <div class="input-group">
+                <label for="songName">Song Name</label>
+                <input type="text" id="songName" name="songName" placeholder="Enter song name" required>
+            </div>
+            <div class="input-group">
+                <label for="singerName">Singer Name</label>
+                <input type="text" id="singerName" name="singerName" placeholder="Enter singer name" required>
+            </div>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+</body>
+</html>

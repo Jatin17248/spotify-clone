@@ -78,6 +78,8 @@ body {
   position: absolute;
   bottom: 20px;
   width: 70%;
+  max-height: 20vh;
+  overflow: hidden;
 }
 .left .library footer a {
   font-size: 11px;
@@ -212,20 +214,21 @@ body {
 .playbar {
   position: fixed;
   bottom: 20px;
-  background-color: green;
+  background-color: rgba(36, 42, 36, 0.961);
   width: 77vw;
-  padding: 12px;
-  border-radius: 25px;
+  padding: 12px 12px 4px 12px;
+  border-radius: 12px;
   margin: 0 5px;
 }
 .songButtons {
   display: flex;
   justify-content: center;
   gap: 16px;
+  font-size: 2rem;
 }
 .songList {
   overflow-y: auto;
-  max-height: 48vh;
+  max-height: 54vh;
 }
 .songList ol {
   margin-right: 6px;
@@ -272,4 +275,35 @@ body {
   padding: 5px;
   color: black;
   font-size: 0.8rem;
+}
+
+.seekbar{
+    height: 2px;
+    width:95%;
+    background-color: #fff;
+    border: 2px solid rgb(26, 26, 26);
+    position: absolute;
+    top: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 77vw;
+    
+}
+
+.circle{
+  width: 12px;
+  height: 12px;
+  border-radius:10px;
+  position: relative;
+  bottom: 5px;
+  left: 0.1%;
+  background-color: #fff;
+  cursor: pointer;
+  transition: left 0.5s;
+}
+.circle:hover{
+  bottom: 8px;
+  width: 15px;
+  height: 15px;
+  border-radius:11px;
 }

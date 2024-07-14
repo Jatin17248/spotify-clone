@@ -225,6 +225,7 @@ body {
   justify-content: center;
   gap: 16px;
   font-size: 2rem;
+  width: 80%;
 }
 .songList {
   overflow-y: auto;
@@ -306,4 +307,22 @@ body {
   width: 15px;
   height: 15px;
   border-radius:11px;
+}
+ .w-20{
+  width: 20%;
+}
+.songInfo{
+  width: 100%;
+} 
+.songInfo :first-child {
+  font-size: 18px;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+.songInfo :nth-child(2) {
+  font-size: 12px;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
 }

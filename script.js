@@ -1,36 +1,45 @@
-let currentSong = new Audio();
+document.addEventListener("DOMContentLoaded", () => {
+  const currentSong = new Audio();
 
-async function getSongs() {
-  let a = await fetch("http://omwebsolutions.000webhostapp.com/spotify/songs/");
-  let response = await a.text();
-  let div = document.createElement("div");
-  div.innerHTML = response;
-  let as = div.getElementsByTagName("a");
-  let songs = [];
-  for (let index = 0; index < as.length; index++) {
-    const element = as[index];
-    if (element.href.endsWith(".mp3")) songs.push(element.href);
+  // Get the pause and next buttons
+
+  const previous = document.getElementById("backwardSong");
+  const pause = document.getElementById("pauseSong");
+  const next = document.getElementById("nextSong");
+
+  async function getSongs() {
+    let a = await fetch(
+      "http://omwebsolutions.000webhostapp.com/spotify/songs/"
+    );
+    let response = await a.text();
+    let div = document.createElement("div");
+    div.innerHTML = response;
+    let as = div.getElementsByTagName("a");
+    let songs = [];
+    for (let index = 0; index < as.length; index++) {
+      const element = as[index];
+      if (element.href.endsWith(".mp3")) songs.push(element.href);
+    }
+    const newSongs = songs.map((song) =>
+      song.replace(
+        "http://127.0.0.1:5500/",
+        "https://omwebsolutions.000webhostapp.com/spotify/songs/"
+      )
+    );
+    return newSongs;
   }
-  const newSongs = songs.map((song) =>
-    song.replace(
-      "http://127.0.0.1:5500/",
-      "https://omwebsolutions.000webhostapp.com/spotify/songs/"
-    )
-  );
-  return newSongs;
-}
-async function createSongList(songs, songUl){
-  for (let song of songs) {
-    let mainUrl = song
-    let li = document.createElement("li");
-    song = song
-      .split("/songs/")[1]
-      .replaceAll("%20", " ")
-      .replace(".mp3", "")
-      .replace("(DJJOhAL.Com)", "");
-    let songName = song.split("-")[0];
-    let singerName = song.split("-")[1];
-    li.innerHTML = `<i class="fa-solid fa-music"></i>
+  async function createSongList(songs, songUl) {
+    for (let song of songs) {
+      let mainUrl = song;
+      let li = document.createElement("li");
+      song = song
+        .split("/songs/")[1]
+        .replaceAll("%20", " ")
+        .replace(".mp3", "")
+        .replace("(DJJOhAL.Com)", "");
+      let songName = song.split("-")[0];
+      let singerName = song.split("-")[1];
+      li.innerHTML = `<i class="fa-solid fa-music"></i>
               <div class="info">
                 <div class="songName" name="${mainUrl}">${songName}</div>
                 <div>${
@@ -38,40 +47,74 @@ async function createSongList(songs, songUl){
                 }</div>
               </div>
               <div class="play"><i class="fa-solid fa-play"></i></div>`;
-    songUl.appendChild(li);
-  }
-}
-
-const playMusic = (songUrl) => {
-  currentSong.src = songUrl;
-  currentSong.play();
-}
-
-async function main() {
-  let currentSong;
-  let songs = await getSongs();
-  //console.log(songs);
-  let songUl = document.querySelector(".songList ol");
-  await createSongList(songs, songUl);
-
-  Array.from(songUl.getElementsByTagName("li")).forEach((e) => {
-    const songElement = e.querySelector(".songName");
-    if (songElement) {
-      let songUrl = songElement.getAttribute("name");
-      songElement.parentElement.parentElement.addEventListener("click", () => {
-        playMusic(songUrl);
-      });
+      songUl.appendChild(li);
     }
+  }
+
+  const playMusic = (songUrl) => {
+    currentSong.src = songUrl;
+    currentSong.play();
+    pause.classList.remove("fa-circle-play");
+    pause.classList.add("fa-circle-pause");
+    let song = songUrl
+      .split("/songs/")[1]
+      .replaceAll("%20", " ")
+      .replace(".mp3", "")
+      .replace("(DJJOhAL.Com)", "");
+    let songName = song.split("-")[0];
+    let singerName = song.split("-")[1];
+    document.querySelector(
+      ".songInfo"
+    ).innerHTML = ` <div class="songName">${songName}</div>
+                <div>${
+                  singerName !== undefined ? "by" + singerName : "By Unknown"
+                }</div>`;
+  };
+
+  async function main() {
+    let songs = await getSongs();
+    //console.log(songs);
+    let songUl = document.querySelector(".songList ol");
+    await createSongList(songs, songUl);
+
+    Array.from(songUl.getElementsByTagName("li")).forEach((e) => {
+      const songElement = e.querySelector(".songName");
+      if (songElement) {
+        let songUrl = songElement.getAttribute("name");
+        songElement.parentElement.parentElement.addEventListener(
+          "click",
+          () => {
+            playMusic(songUrl);
+          }
+        );
+      }
+    });
+
+    var audio = new Audio(songs[0]);
+    //audio.play();
+
+    audio.addEventListener("loadeddata", () => {
+      console.log(audio.duration, audio.currentSrc, audio.currentTime);
+    });
+
+    //Atatch an event listener to each button of playbar
+    pause.addEventListener("click", () => {
+      if (currentSong.paused) {
+        currentSong.play();
+        pause.classList.remove("fa-circle-play");
+        pause.classList.add("fa-circle-pause");
+        pause.setAttribute("aria-label", "Pause");
+      } else {
+        currentSong.pause();
+        pause.classList.add("fa-circle-play");
+        pause.classList.remove("fa-circle-pause");
+        pause.setAttribute("aria-label", "Play");
+      }
+    });
+  }
+
+  main();
+  currentSong.addEventListener("error", (e) => {
+    console.error("Error playing the audio:", e);
   });
-  
-  var audio = new Audio(songs[0]);
-  //audio.play();
-
-  audio.addEventListener("loadeddata", () => {
-    console.log(audio.duration, audio.currentSrc, audio.currentTime);
-  });
-
-  //Attatch an event listener to each song
-}
-
-main();
+});

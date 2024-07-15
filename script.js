@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function getSongs() {
     let a = await fetch(
-      "http://omwebsolutions.000webhostapp.com/spotify/songs/"
+      "https://test.brightjuniors.in/proxy.php"
     );
     let response = await a.text();
     let div = document.createElement("div");
@@ -20,22 +20,44 @@ document.addEventListener("DOMContentLoaded", () => {
       const element = as[index];
       if (element.href.endsWith(".mp3")) songs.push(element.href);
     }
+    
     const newSongs = songs.map((song) =>
       song.replace(
         "http://127.0.0.1:5500/",
-        "https://omwebsolutions.000webhostapp.com/spotify/songs/"
+        "https://test.brightjuniors.in/"
       )
     );
+    console.log(newSongs);
     return newSongs;
   }
+  function formatTime(seconds) {
+    // Ensure the input is a number and is not negative
+    if (typeof seconds !== 'number' || seconds < 0) {
+        return '0:00';
+    }
+
+    // Calculate minutes and remaining seconds
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+
+    // Pad the remaining seconds with leading zero if necessary
+    const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
+
+    // Return the formatted time
+    return `${minutes}:${formattedSeconds}`;
+}
+
   async function createSongList(songs, songUl) {
+    
     for (let song of songs) {
       let mainUrl = song;
+      
       let li = document.createElement("li");
       song = song
         .split("/songs/")[1]
         .replaceAll("%20", " ")
         .replace(".mp3", "")
+        .replace("%28DJJOhAL.Com%29", "")
         .replace("(DJJOhAL.Com)", "");
       let songName = song.split("-")[0];
       let singerName = song.split("-")[1];
@@ -51,15 +73,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const playMusic = (songUrl) => {
+  const playMusic = (songUrl, play=true) => {
     currentSong.src = songUrl;
+    if(play){
     currentSong.play();
     pause.classList.remove("fa-circle-play");
     pause.classList.add("fa-circle-pause");
+  }
+  
     let song = songUrl
       .split("/songs/")[1]
       .replaceAll("%20", " ")
       .replace(".mp3", "")
+      .replace("%28DJJOhAL.Com%29", "")
       .replace("(DJJOhAL.Com)", "");
     let songName = song.split("-")[0];
     let singerName = song.split("-")[1];
@@ -69,11 +95,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div>${
                   singerName !== undefined ? "by" + singerName : "By Unknown"
                 }</div>`;
+                currentSong.addEventListener('loadedmetadata', function() {
+                  document.querySelector(".songTime").innerHTML = `${formatTime(currentSong.currentTime)}/${formatTime(currentSong.duration)}`;
+              });              
+  
   };
 
   async function main() {
     let songs = await getSongs();
-    //console.log(songs);
+    playMusic(songs[0], false);
     let songUl = document.querySelector(".songList ol");
     await createSongList(songs, songUl);
 
@@ -117,4 +147,8 @@ document.addEventListener("DOMContentLoaded", () => {
   currentSong.addEventListener("error", (e) => {
     console.error("Error playing the audio:", e);
   });
+  currentSong.addEventListener("timeupdate", ()=>{
+    document.querySelector(".songTime").innerHTML = `${formatTime(currentSong.currentTime)}/${formatTime(currentSong.duration)}`;
+    document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
+  })
 });

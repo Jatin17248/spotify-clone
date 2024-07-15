@@ -8,9 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const next = document.getElementById("nextSong");
 
   async function getSongs() {
-    let a = await fetch(
-      "https://test.brightjuniors.in/proxy.php"
-    );
+    let a = await fetch("https://test.brightjuniors.in/proxy.php");
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -20,20 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const element = as[index];
       if (element.href.endsWith(".mp3")) songs.push(element.href);
     }
-    
+
     const newSongs = songs.map((song) =>
-      song.replace(
-        "http://127.0.0.1:5500/",
-        "https://test.brightjuniors.in/"
-      )
+      song.replace("http://127.0.0.1:5500/", "https://test.brightjuniors.in/")
     );
-    console.log(newSongs);
     return newSongs;
   }
   function formatTime(seconds) {
     // Ensure the input is a number and is not negative
-    if (typeof seconds !== 'number' || seconds < 0) {
-        return '0:00';
+    if (typeof seconds !== "number" || seconds < 0) {
+      return "0:00";
     }
 
     // Calculate minutes and remaining seconds
@@ -41,17 +35,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const remainingSeconds = Math.floor(seconds % 60);
 
     // Pad the remaining seconds with leading zero if necessary
-    const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
+    const formattedSeconds =
+      remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
 
     // Return the formatted time
     return `${minutes}:${formattedSeconds}`;
-}
+  }
 
   async function createSongList(songs, songUl) {
-    
     for (let song of songs) {
       let mainUrl = song;
-      
+
       let li = document.createElement("li");
       song = song
         .split("/songs/")[1]
@@ -73,14 +67,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const playMusic = (songUrl, play=true) => {
+  const playMusic = (songUrl, play = true) => {
     currentSong.src = songUrl;
-    if(play){
-    currentSong.play();
-    pause.classList.remove("fa-circle-play");
-    pause.classList.add("fa-circle-pause");
-  }
-  
+    if (play) {
+      currentSong.play();
+      pause.classList.remove("fa-circle-play");
+      pause.classList.add("fa-circle-pause");
+    }
+
     let song = songUrl
       .split("/songs/")[1]
       .replaceAll("%20", " ")
@@ -95,10 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div>${
                   singerName !== undefined ? "by" + singerName : "By Unknown"
                 }</div>`;
-                currentSong.addEventListener('loadedmetadata', function() {
-                  document.querySelector(".songTime").innerHTML = `${formatTime(currentSong.currentTime)}/${formatTime(currentSong.duration)}`;
-              });              
-  
+    currentSong.addEventListener("loadedmetadata", function () {
+      document.querySelector(".songTime").innerHTML = `${formatTime(
+        currentSong.currentTime
+      )}/${formatTime(currentSong.duration)}`;
+    });
   };
 
   async function main() {
@@ -118,13 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         );
       }
-    });
-
-    var audio = new Audio(songs[0]);
-    //audio.play();
-
-    audio.addEventListener("loadeddata", () => {
-      console.log(audio.duration, audio.currentSrc, audio.currentTime);
     });
 
     //Atatch an event listener to each button of playbar
@@ -147,8 +135,28 @@ document.addEventListener("DOMContentLoaded", () => {
   currentSong.addEventListener("error", (e) => {
     console.error("Error playing the audio:", e);
   });
-  currentSong.addEventListener("timeupdate", ()=>{
-    document.querySelector(".songTime").innerHTML = `${formatTime(currentSong.currentTime)}/${formatTime(currentSong.duration)}`;
-    document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
-  })
+  // added eventlistener to song for updating the time and seekbar
+  currentSong.addEventListener("timeupdate", () => {
+    document.querySelector(".songTime").innerHTML = `${formatTime(
+      currentSong.currentTime
+    )}/${formatTime(currentSong.duration)}`;
+    document.querySelector(".circle").style.left =
+      (currentSong.currentTime / currentSong.duration) * 100 + "%";
+  });
+
+  // added eventlistener to seekbar
+  document.querySelector(".seekbar").addEventListener("click", (e) => {
+    let seekPercent =
+      (e.offsetX / e.target.getBoundingClientRect().width) * 100;
+    document.querySelector(".circle").style.left = seekPercent + "%";
+    currentSong.currentTime = (currentSong.duration * seekPercent) / 100;
+  });
+
+  // add event listeners for responsiveness
+  document.querySelector(".hamburger").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "0";
+  });
+  document.querySelector("#closeMenu").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "-100%";
+  });
 });

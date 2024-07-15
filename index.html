@@ -16,12 +16,14 @@
     <div class="container flex bg-black">
       <div class="left border bg-black rounded p-1">
         <div class="home p-2 bg-grey rounded m-1">
-          <object
-            type="image/svg+xml"
-            data="logo.svg"
-            class="svg-fill"
-          ></object>
-
+          <div class="flex logoCross">
+            <object
+              type="image/svg+xml"
+              data="logo.svg"
+              class="svg-fill"
+            ></object
+            ><i id="closeMenu" class="fa-solid fa-xmark"></i>
+          </div>
           <ul>
             <li>
               <div>
@@ -97,6 +99,10 @@
       >
         <div class="header">
           <div class="nav" style="color: white">
+            <div class="hamburger">
+              <i class="fa-solid fa-bars"></i>
+            </div>
+
             <button><i class="fa-solid fa-chevron-left"></i></button>
             <button><i class="fa-solid fa-chevron-right"></i></button>
           </div>
@@ -122,23 +128,21 @@
           <div class="seekbar">
             <div class="circle"></div>
           </div>
-          <div class="flex"><div class="w-20">
-          <div class="songTime"></div>
-          <div class="songInfo">
-            <div class="songName"></div>
-              <div></div>
+          <div class="flex">
+            <div class="w-20">
+              <div class="songTime"></div>
+              <div class="songInfo">
+                <div class="songName"></div>
+                <div></div>
+              </div>
+            </div>
+            <div class="songButtons">
+              <i id="backwardSong" class="fa-solid fa-backward-step"></i>
+              <i id="pauseSong" class="fa-regular fa-circle-play"></i>
+              <i id="nextSong" class="fa-solid fa-forward-step"></i>
+            </div>
+            <div class="w-20"></div>
           </div>
-        </div>
-          <div class="songButtons">
-            <i id="backwardSong" class="fa-solid fa-backward-step"></i>
-            <i id="pauseSong" class="fa-regular fa-circle-play"></i>
-            <i id="nextSong" class="fa-solid fa-forward-step"></i>
-          </div>
-          <div class="w-20"></div>
-          </div>
-          
-          
-
         </div>
       </div>
     </div>

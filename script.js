@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentSong = new Audio();
 
   // Get the pause and next buttons
-
+  let songs;
   const previous = document.getElementById("backwardSong");
   const pause = document.getElementById("pauseSong");
   const next = document.getElementById("nextSong");
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   function formatTime(seconds) {
     // Ensure the input is a number and is not negative
-    if (typeof seconds !== "number" || seconds < 0) {
+    if (typeof seconds !== "number" || seconds < 0 || seconds === NaN) {
       return "0:00";
     }
 
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   async function main() {
-    let songs = await getSongs();
+    songs = await getSongs();
     playMusic(songs[0], false);
     let songUl = document.querySelector(".songList ol");
     await createSongList(songs, songUl);
@@ -159,4 +159,29 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector("#closeMenu").addEventListener("click", () => {
     document.querySelector(".left").style.left = "-100%";
   });
+
+  document.querySelector(".volume").getElementsByTagName("input")[0].addEventListener("change", (e)=>{
+    currentSong.volume = parseInt(e.target.value) / 100;
+  })
+
+  next.addEventListener("click", ()=>{
+    playNextMusic();
+  });
+
+  previous.addEventListener("click", ()=>{
+    playPrevMusic();
+  });
+
+  const playNextMusic = () =>{
+    currentSong.pause();
+    let index = songs.indexOf(currentSong.src);
+    let newIndex = (index+1) % songs.length;
+    playMusic(songs[newIndex])
+  }
+  const playPrevMusic = () =>{
+    currentSong.pause();
+    let index = songs.indexOf(currentSong.src);
+    let newIndex = (index - 1 + songs.length) % songs.length;
+    playMusic(songs[newIndex])
+  }
 });

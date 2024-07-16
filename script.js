@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const currentSong = new Audio();
-
+  let currFolder = "default";
+  let albums = [];
   // Get the pause and next buttons
   let songs;
   const previous = document.getElementById("backwardSong");
@@ -8,7 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const next = document.getElementById("nextSong");
 
   async function getSongs() {
-    let a = await fetch("https://test.brightjuniors.in/proxy.php");
+    let a = await fetch(
+      `https://test.brightjuniors.in/spotify/songs/${currFolder}/proxy.php`
+    );
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -45,14 +48,15 @@ document.addEventListener("DOMContentLoaded", () => {
   async function createSongList(songs, songUl) {
     for (let song of songs) {
       let mainUrl = song;
-
       let li = document.createElement("li");
       song = song
-        .split("/songs/")[1]
+        .split(`/songs/${currFolder}/`)[1]
         .replaceAll("%20", " ")
         .replace(".mp3", "")
         .replace("%28DJJOhAL.Com%29", "")
         .replace("(DJJOhAL.Com)", "");
+      song = song.replace(currFolder + "/", "");
+      song = decodeURI(song);
       let songName = song.split("-")[0];
       let singerName = song.split("-")[1];
       li.innerHTML = `<i class="fa-solid fa-music"></i>
@@ -76,11 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     let song = songUrl
-      .split("/songs/")[1]
+      .split(`/songs/${currFolder}/`)[1]
       .replaceAll("%20", " ")
       .replace(".mp3", "")
       .replace("%28DJJOhAL.Com%29", "")
       .replace("(DJJOhAL.Com)", "");
+    song = song.replace(currFolder + "/", "");
+    console.log(song);
+    song = decodeURI(song);
     let songName = song.split("-")[0];
     let singerName = song.split("-")[1];
     document.querySelector(
@@ -101,7 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
     playMusic(songs[0], false);
     let songUl = document.querySelector(".songList ol");
     await createSongList(songs, songUl);
-
+    albums = await getAllAlbums();
+    createAlbumsList(albums);
     Array.from(songUl.getElementsByTagName("li")).forEach((e) => {
       const songElement = e.querySelector(".songName");
       if (songElement) {
@@ -129,10 +137,12 @@ document.addEventListener("DOMContentLoaded", () => {
         pause.setAttribute("aria-label", "Play");
       }
     });
+    cardPlay();
   }
 
   main();
   currentSong.addEventListener("error", (e) => {
+    console.log(songs);
     console.error("Error playing the audio:", e);
   });
   // added eventlistener to song for updating the time and seekbar
@@ -160,28 +170,116 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".left").style.left = "-100%";
   });
 
-  document.querySelector(".volume").getElementsByTagName("input")[0].addEventListener("change", (e)=>{
-    currentSong.volume = parseInt(e.target.value) / 100;
-  })
+  document
+    .querySelector(".volume")
+    .getElementsByTagName("input")[0]
+    .addEventListener("change", (e) => {
+      currentSong.volume = parseInt(e.target.value) / 100;
+    });
 
-  next.addEventListener("click", ()=>{
+  next.addEventListener("click", () => {
     playNextMusic();
   });
 
-  previous.addEventListener("click", ()=>{
+  previous.addEventListener("click", () => {
     playPrevMusic();
   });
 
-  const playNextMusic = () =>{
+  const playNextMusic = () => {
     currentSong.pause();
     let index = songs.indexOf(currentSong.src);
-    let newIndex = (index+1) % songs.length;
-    playMusic(songs[newIndex])
-  }
-  const playPrevMusic = () =>{
+    let newIndex = (index + 1) % songs.length;
+    playMusic(songs[newIndex]);
+  };
+  const playPrevMusic = () => {
     currentSong.pause();
     let index = songs.indexOf(currentSong.src);
     let newIndex = (index - 1 + songs.length) % songs.length;
-    playMusic(songs[newIndex])
+    playMusic(songs[newIndex]);
+  };
+
+  const getAllAlbums = async () => {
+    let a = await fetch(
+      `https://test.brightjuniors.in/spotify/songs/proxy.php`
+    );
+    let response = await a.text();
+    let div = document.createElement("div");
+    div.innerHTML = response;
+    let as = div.getElementsByTagName("a");
+    let folders = [];
+    let newFolders;
+    for (let index = 0; index < as.length; index++) {
+      const element = as[index];
+      if (
+        !(
+          element.href.endsWith(".php") ||
+          element.href.endsWith("/default/") ||
+          element.href.endsWith("/spotify/")
+        )
+      ) {
+        folders.push(element.href);
+      }
+
+      newFolders = folders.map((folder) =>
+        folder.replace(
+          "http://127.0.0.1:5500/",
+          "https://test.brightjuniors.in/"
+        )
+      );
+    }
+    return newFolders;
+  };
+  function capitalizeWords(str) {
+    return str
+      .split(" ")
+      .map((word) => {
+        // Capitalize the first character and concatenate it with the rest of the string
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
+      .join(" ");
   }
+
+  async function createAlbumsList(albums) {
+    for (let album of albums) {
+      let mainUrl = album;
+      let li = document.createElement("div");
+      album = album
+        .split("/songs/")[1]
+        .replaceAll("%20", " ")
+        .replace(".mp3", "")
+        .replace("%28DJJOhAL.Com%29", "")
+        .replace("(DJJOhAL.Com)", "")
+        .replace("/", "");
+      album = album.replace(currFolder + "/", "");
+      album = decodeURI(album);
+      let albumName = album.split("-")[0];
+      let singerName = album.split("-")[1];
+      li.innerHTML = `<div class="card" name=${encodeURI(album)}>
+              <img
+                src=${mainUrl + "index.jpg"}
+              />
+              <div class="play"><i class="fa-solid fa-play"></i></div>
+              <h2>${capitalizeWords(albumName)}</h2>
+              <p>${capitalizeWords(singerName)}</p>
+            </div>
+            `;
+      document.querySelector(".cardContainer").appendChild(li);
+    }
+  }
+  const cardPlay = async () => {
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach((card) => {
+      card.addEventListener("click", async () => {
+        songs = [];
+        currFolder = card.getAttribute("name");
+        songs = await getSongs();
+        playMusic(songs[0]);
+        console.log(songs);
+        let songUl = document.querySelector(".songList ol");
+        songUl.innerHTML = "";
+        await createSongList(songs, songUl);
+      });
+    });
+  };
 });

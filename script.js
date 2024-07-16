@@ -197,6 +197,25 @@ document.addEventListener("DOMContentLoaded", () => {
     let newIndex = (index - 1 + songs.length) % songs.length;
     playMusic(songs[newIndex]);
   };
+  const muteBtn = document.querySelector(".volume i");
+    muteBtn.addEventListener("click", (e)=>{
+    let volRange = document
+    .querySelector(".volume")
+    .getElementsByTagName("input")[0];
+      console.log(e.target);
+    if(currentSong.volume !== 0){
+    muteBtn.classList.remove("fa-volume-high");
+    muteBtn.classList.add("fa-volume-xmark");
+    currentSong.volume = 0;
+    volRange.value=0;
+  }
+  else{
+    muteBtn.classList.add("fa-volume-high");
+    muteBtn.classList.remove("fa-volume-xmark");
+    currentSong.volume = currentSong.volume + 0.05;
+    volRange.value=5;
+  }
+  })
 
   const getAllAlbums = async () => {
     let a = await fetch(

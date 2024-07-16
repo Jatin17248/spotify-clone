@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createAlbumsList(albums);
     createAlbumsList(albums);
     createAlbumsList(albums);
-    
+
     Array.from(songUl.getElementsByTagName("li")).forEach((e) => {
       const songElement = e.querySelector(".songName");
       if (songElement) {
@@ -188,6 +188,12 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementsByTagName("input")[0]
     .addEventListener("change", (e) => {
       currentSong.volume = parseInt(e.target.value) / 100;
+      if(currentSong.volume > 0){
+        if(muteBtn.classList.contains("fa-volume-xmark")){
+        muteBtn.classList.add("fa-volume-high");
+        muteBtn.classList.remove("fa-volume-xmark");
+        }
+      }
     });
 
   next.addEventListener("click", () => {

@@ -336,13 +336,13 @@ body {
   width: 100%;
   font-size: 1.5rem;
 }
-.volume{
+.volume {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 6px;
 }
-.volume input{
+.volume input {
   width: 80%;
   height: 3px;
   -webkit-appearance: none;
@@ -357,7 +357,7 @@ body {
   border-radius: 50%;
   background-color: #ffffffc2;
   height: 10px;
-  width: 10px;    
+  width: 10px;
 }
 @media (max-width: 1064px) {
   .songList ol li > :nth-child(1) {
@@ -368,7 +368,7 @@ body {
     left: -100%;
     transition: all 0.7s;
     z-index: 1;
-    width: 60vw;
+    width: 80vw;
   }
   .right {
     width: 100vw;
@@ -381,11 +381,11 @@ body {
   .seekbar {
     width: 92vw;
   }
-  .songButtons{
+  .songButtons {
     width: 40%;
     align-items: center;
   }
-  .w-20{
+  .w-20 {
     width: 30%;
   }
   .hamburger {
@@ -404,13 +404,13 @@ body {
   .right .header .buttons :nth-child(2):hover {
     font-size: 14px;
   }
-  .cardContainer{
+  .cardContainer {
     justify-content: center;
   }
-  .playlists .card{
+  .playlists .card {
     width: 40vw;
   }
-  .left .library footer{
+  .left .library footer {
     gap: 8px;
     position: static;
     width: 80%;

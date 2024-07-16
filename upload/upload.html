@@ -29,7 +29,7 @@
             display: block;
             margin-bottom: 5px;
         }
-        .input-group input {
+        .input-group input, .input-group select {
             width: 100%;
             padding: 10px;
             border: none;
@@ -68,6 +68,12 @@
                 <input type="file" id="mp3File" name="mp3File" accept=".mp3" required>
             </div>
             <div class="input-group">
+                <label for="album">Choose Album</label>
+                <select id="album" name="album" required>
+                    <option value="default">Default</option>
+                </select>
+            </div>
+            <div class="input-group">
                 <label for="songName">Song Name</label>
                 <input type="text" id="songName" name="songName" placeholder="Enter song name" required>
             </div>
@@ -78,5 +84,6 @@
             <button type="submit">Upload</button>
         </form>
     </div>
+    <script src="upload.js"></script>
 </body>
 </html>

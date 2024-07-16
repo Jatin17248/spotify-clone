@@ -161,7 +161,7 @@ body {
 }
 
 .cardContainer {
-  height: 78.5vh;
+  height: 73vh;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -258,6 +258,7 @@ body {
 }
 .songList ol li .info {
   width: 70%;
+  overflow: hidden;
 }
 .songList ol li .info :first-child {
   font-size: 18px;
@@ -410,12 +411,63 @@ body {
   .cardContainer {
     justify-content: center;
   }
-  .playlists .card {
-    width: 40vw;
-  }
+  
   .left .library footer {
     gap: 8px;
     position: static;
     width: 80%;
   }
+}
+
+@media (max-width: 473px) {
+  .playlists .card {
+    width: 78vw;
+    height: auto;
+    background-color: rgba(34, 34, 34, 0.415);
+  }
+  .playlists .card > * {
+    padding-top: 4px;
+}
+.cardContainer{
+  gap: 26vw;
+}
+.w-20 {
+  width: 30%;
+}
+.playbar{
+  width: 90vw;
+    margin: 0 1vw;
+}
+.fixwidth{
+  width: 90vw;
+  margin: auto;
+}
+}
+
+@media (max-width: 343px) {
+  .playlists .card {
+    width: 78vw;
+    height: auto;
+    background-color: rgba(34, 34, 34, 0.415);
+  }
+  .playlists .card > * {
+    padding-top: 4px;
+}
+.cardContainer{
+  gap: 18vw;
+}
+.w-20 {
+  width: 30%;
+}
+.playbar{
+  width: 90vw;
+  position:absolute;
+  margin: 0 1vw;
+  overflow: hidden;
+
+}
+.fixwidth{
+  width: 90vw;
+  margin: auto;
+}
 }

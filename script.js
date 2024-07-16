@@ -110,6 +110,19 @@ document.addEventListener("DOMContentLoaded", () => {
     await createSongList(songs, songUl);
     albums = await getAllAlbums();
     createAlbumsList(albums);
+    createAlbumsList(albums);
+    createAlbumsList(albums);
+    createAlbumsList(albums);
+    createAlbumsList(albums);
+    createAlbumsList(albums);
+    createAlbumsList(albums);
+    createAlbumsList(albums);
+    createAlbumsList(albums);
+    createAlbumsList(albums);
+    createAlbumsList(albums);
+    createAlbumsList(albums);
+    createAlbumsList(albums);
+    
     Array.from(songUl.getElementsByTagName("li")).forEach((e) => {
       const songElement = e.querySelector(".songName");
       if (songElement) {
